@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskWave - Task Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="blob blob-one"></div>
+  <div class="blob blob-two"></div>
+
+  <main class="app">
+    <aside class="sidebar glass-card">
+      <div class="brand">
+        <div class="logo">TW</div>
+        <div>
+          <h1>TaskWave</h1>
+          <p>Plan your day beautifully</p>
+        </div>
+      </div>
+
+      <nav class="nav-buttons" aria-label="Task views">
+        <button class="nav-btn active" data-view="all">All Tasks</button>
+        <button class="nav-btn" data-view="pending">Pending</button>
+        <button class="nav-btn" data-view="completed">Completed</button>
+      </nav>
+
+      <button id="themeToggle" class="secondary-btn" type="button">Toggle Theme</button>
+    </aside>
+
+    <section class="dashboard">
+      <header class="hero glass-card">
+        <div>
+          <p class="eyebrow">Personal Dashboard</p>
+          <h2>Make today feel lighter.</h2>
+          <p class="hero-text">Add tasks, set priorities, track progress, and keep everything saved in your browser.</p>
+        </div>
+        <button id="openFormBtn" class="primary-btn" type="button">+ Add Task</button>
+      </header>
+
+      <section class="stats-grid" aria-label="Task counters">
+        <article class="stat-card glass-card">
+          <span>Total</span>
+          <strong id="totalCount">0</strong>
+        </article>
+        <article class="stat-card glass-card success">
+          <span>Completed</span>
+          <strong id="completedCount">0</strong>
+        </article>
+        <article class="stat-card glass-card warning">
+          <span>Pending</span>
+          <strong id="pendingCount">0</strong>
+        </article>
+      </section>
+
+      <section class="tools glass-card">
+        <label>
+          <span>Search</span>
+          <input id="searchInput" type="search" placeholder="Search tasks..." />
+        </label>
+        <label>
+          <span>Priority</span>
+          <select id="priorityFilter">
+            <option value="all">All priorities</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </label>
+        <label>
+          <span>Sort</span>
+          <select id="sortSelect">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="dueDate">Due date</option>
+            <option value="priority">Priority</option>
+          </select>
+        </label>
+      </section>
+
+      <section id="taskFormPanel" class="form-panel hidden">
+        <form id="taskForm" class="task-form glass-card">
+          <div class="form-title-row">
+            <h3 id="formTitle">Add Task</h3>
+            <button id="closeFormBtn" class="icon-btn" type="button" aria-label="Close form">x</button>
+          </div>
+
+          <input id="taskId" type="hidden" />
+
+          <label>
+            <span>Task title</span>
+            <input id="titleInput" type="text" placeholder="Example: Finish portfolio page" required />
+          </label>
+
+          <label>
+            <span>Description</span>
+            <textarea id="descriptionInput" placeholder="Add a short note..."></textarea>
+          </label>
+
+          <div class="form-grid">
+            <label>
+              <span>Due date</span>
+              <input id="dueDateInput" type="date" />
+            </label>
+            <label>
+              <span>Priority</span>
+              <select id="priorityInput">
+                <option>Low</option>
+                <option selected>Medium</option>
+                <option>High</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="checkbox-row">
+            <input id="completedInput" type="checkbox" />
+            <span>Mark as completed</span>
+          </label>
+
+          <button class="primary-btn full" type="submit">Save Task</button>
+        </form>
+      </section>
+
+      <section class="task-columns">
+        <div class="column glass-card">
+          <div class="column-header">
+            <h3>Pending</h3>
+            <span id="pendingBadge">0</span>
+          </div>
+          <div id="pendingList" class="task-list" data-list="pending"></div>
+        </div>
+
+        <div class="column glass-card">
+          <div class="column-header">
+            <h3>Completed</h3>
+            <span id="completedBadge">0</span>
+          </div>
+          <div id="completedList" class="task-list" data-list="completed"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="script.js"></script>
+</body>
+</html>
